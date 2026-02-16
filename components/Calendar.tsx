@@ -72,15 +72,24 @@ export default function Calendar({ bookings, onDateClick }: CalendarProps) {
     onDateClick(date, booking);
   };
 
+  // Check if a date is in the past (before today)
+  const isPastDate = (date: Date): boolean => {
+    const now = new Date();
+    const todayUTC = new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+    const dateUTC = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+    return dateUTC < todayUTC;
+  };
+
   // Render a single date cell
   const renderDateCell = (date: Date, index: number) => {
     const isCurrentMonth = date.getUTCMonth() + 1 === currentMonth;
     const isTodayDate = isToday(date);
     const booking = getBookingForDate(date);
     const isBooked = booking !== null;
+    const isPast = isPastDate(date);
 
-    // Only allow clicks for current month days (clean UX)
-    const isClickable = isCurrentMonth;
+    // Only allow clicks for current month, non-past days
+    const isClickable = isCurrentMonth && !isPast;
 
     // Base classes - Najdi desert theme
     let cellClasses =
@@ -89,6 +98,9 @@ export default function Calendar({ bookings, onDateClick }: CalendarProps) {
     if (!isCurrentMonth) {
       cellClasses +=
         "bg-najdi-sand/40 text-najdi-muted-light/50 border-najdi-border/40 cursor-default ";
+    } else if (isPast) {
+      cellClasses +=
+        "bg-najdi-sand-dark/40 border-najdi-border/50 cursor-not-allowed opacity-50 ";
     } else if (isBooked) {
       cellClasses +=
         "bg-najdi-clay border-najdi-clay-dark hover:bg-najdi-clay-dark shadow-desert cursor-pointer active:scale-[0.97] ";
@@ -116,9 +128,11 @@ export default function Calendar({ bookings, onDateClick }: CalendarProps) {
         aria-label={`${date.getUTCDate()} ${monthName} ${currentYear}${
           !isCurrentMonth
             ? ""
-            : isBooked
-              ? `, Booked by ${booking?.customerName}`
-              : ", Available"
+            : isPast
+              ? ", Unavailable"
+              : isBooked
+                ? `, Booked by ${booking?.customerName}`
+                : ", Available"
         }`}
         aria-disabled={!isClickable}
       >
@@ -128,11 +142,13 @@ export default function Calendar({ bookings, onDateClick }: CalendarProps) {
             className={`text-sm md:text-lg font-semibold ${
               isTodayDate && isCurrentMonth
                 ? "text-najdi-palm"
-                : isBooked
-                  ? "text-white"
-                  : isCurrentMonth
-                    ? "text-najdi-text"
-                    : "text-najdi-muted-light/50"
+                : isPast && isCurrentMonth
+                  ? "text-najdi-muted-light"
+                  : isBooked
+                    ? "text-white"
+                    : isCurrentMonth
+                      ? "text-najdi-text"
+                      : "text-najdi-muted-light/50"
             }`}
           >
             {date.getUTCDate()}
@@ -157,8 +173,17 @@ export default function Calendar({ bookings, onDateClick }: CalendarProps) {
           </div>
         )}
 
+        {/* Past day label */}
+        {isPast && isCurrentMonth && !isBooked && (
+          <div className="hidden sm:block mt-0.5">
+            <div className="text-[10px] md:text-xs text-najdi-muted-light font-medium">
+              Unavailable
+            </div>
+          </div>
+        )}
+
         {/* Available indicator */}
-        {!isBooked && isCurrentMonth && (
+        {!isBooked && !isPast && isCurrentMonth && (
           <div className="absolute bottom-1 right-1 md:bottom-2 md:right-2">
             <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-najdi-palm/25"></div>
           </div>
