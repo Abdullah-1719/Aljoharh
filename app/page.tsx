@@ -1,6 +1,10 @@
 "use client";
 
+<<<<<<< HEAD
 import { useState, useEffect, useCallback } from "react";
+=======
+import { useState, useEffect, useCallback, useRef } from "react";
+>>>>>>> b89f9f6 (initial commit)
 import Calendar, { Booking } from "@/components/Calendar";
 import BookingModal from "@/components/BookingModal";
 import { ToastContainer, useToast } from "@/components/Toast";
@@ -12,6 +16,10 @@ export default function Home() {
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
   });
   const [isLoading, setIsLoading] = useState(true);
+<<<<<<< HEAD
+=======
+  const hasLoadedOnce = useRef(false);
+>>>>>>> b89f9f6 (initial commit)
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,6 +41,7 @@ export default function Home() {
 
       const data = await response.json();
       setBookings(data.bookings || []);
+<<<<<<< HEAD
     } catch (error) {
       console.error("Error fetching bookings:", error);
       showToast(
@@ -40,6 +49,18 @@ export default function Home() {
         "Failed to load bookings",
         "Please refresh the page to try again",
       );
+=======
+      hasLoadedOnce.current = true;
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+      // Only show error toast after first successful load (not on initial page open)
+      if (hasLoadedOnce.current) {
+        showToast("error", "Failed to load bookings");
+      }
+      // Still show calendar with empty bookings
+      setBookings([]);
+      hasLoadedOnce.current = true;
+>>>>>>> b89f9f6 (initial commit)
     } finally {
       setIsLoading(false);
     }
@@ -89,6 +110,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-najdi-sand">
       {/* Hero Section with Background Image */}
+<<<<<<< HEAD
       <div className="hero-section" style={{ minHeight: "48vh" }}>
         <div className="hero-overlay" />
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8" style={{ minHeight: "48vh" }}>
@@ -103,10 +125,27 @@ export default function Home() {
             AlJoharah
           </h1>
           <p className="mt-3 text-xl md:text-2xl text-white/90 font-light tracking-wide text-shadow-subtle">
+=======
+      <div className="hero-section" style={{ minHeight: "35vh" }}>
+        <div className="hero-overlay" />
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8" style={{ minHeight: "35vh" }}>
+          {/* Decorative top line */}
+          <div className="flex items-center gap-3 mb-4 md:mb-6">
+            <div className="h-px w-10 md:w-16 bg-white/40"></div>
+            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rotate-45 border border-white/50"></div>
+            <div className="h-px w-10 md:w-16 bg-white/40"></div>
+          </div>
+
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight text-shadow-hero font-serif">
+            AlJoharah
+          </h1>
+          <p className="mt-2 md:mt-3 text-lg md:text-2xl text-white/90 font-light tracking-wide text-shadow-subtle">
+>>>>>>> b89f9f6 (initial commit)
             Reserve Your Perfect Day
           </p>
 
           {/* Decorative divider */}
+<<<<<<< HEAD
           <div className="mt-6 flex items-center gap-3">
             <div className="h-px w-20 bg-white/30"></div>
             <span className="text-white/70 text-sm tracking-widest uppercase font-light">
@@ -120,11 +159,20 @@ export default function Home() {
             <div className="w-1.5 h-1.5 rounded-full bg-white/30"></div>
             <div className="w-2 h-2 rounded-full bg-white/50"></div>
             <div className="w-1.5 h-1.5 rounded-full bg-white/30"></div>
+=======
+          <div className="mt-4 md:mt-6 flex items-center gap-3">
+            <div className="h-px w-12 md:w-20 bg-white/30"></div>
+            <span className="text-white/70 text-xs md:text-sm tracking-widest uppercase font-light">
+              Booking Calendar
+            </span>
+            <div className="h-px w-12 md:w-20 bg-white/30"></div>
+>>>>>>> b89f9f6 (initial commit)
           </div>
         </div>
       </div>
 
       {/* Main Content */}
+<<<<<<< HEAD
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
         {/* Loading State */}
         {isLoading && (
@@ -133,6 +181,16 @@ export default function Home() {
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-najdi-palm/10 mb-4">
                 <svg
                   className="animate-spin h-8 w-8 text-najdi-palm"
+=======
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 md:py-14">
+        {/* Loading State */}
+        {isLoading && (
+          <div className="flex items-center justify-center py-16">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-najdi-palm/10 mb-3">
+                <svg
+                  className="animate-spin h-7 w-7 text-najdi-palm"
+>>>>>>> b89f9f6 (initial commit)
                   fill="none"
                   viewBox="0 0 24 24"
                 >
@@ -151,35 +209,60 @@ export default function Home() {
                   ></path>
                 </svg>
               </div>
+<<<<<<< HEAD
               <p className="text-najdi-muted font-medium">Loading calendar...</p>
+=======
+              <p className="text-najdi-muted font-medium text-sm">Loading...</p>
+>>>>>>> b89f9f6 (initial commit)
             </div>
           </div>
         )}
 
         {/* Calendar */}
         {!isLoading && (
+<<<<<<< HEAD
           <div className="bg-najdi-cream rounded-2xl shadow-desert-lg p-6 md:p-8 lg:p-10 border border-najdi-border">
+=======
+          <div className="bg-najdi-cream rounded-2xl shadow-desert-lg p-3 sm:p-6 md:p-8 lg:p-10 border border-najdi-border">
+>>>>>>> b89f9f6 (initial commit)
             <Calendar bookings={bookings} onDateClick={handleDateClick} />
           </div>
         )}
 
         {/* Booking Summary */}
         {!isLoading && bookings.length > 0 && (
+<<<<<<< HEAD
           <div className="mt-10 md:mt-14">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl md:text-3xl font-bold text-najdi-text font-serif">
                 {monthNames[month - 1]} {year} Reservations
               </h2>
               <span className="text-sm font-medium text-najdi-palm bg-najdi-palm/10 px-4 py-2 rounded-full">
+=======
+          <div className="mt-8 md:mt-14">
+            <div className="flex items-center justify-between mb-4 md:mb-6">
+              <h2 className="text-xl md:text-3xl font-bold text-najdi-text font-serif">
+                {monthNames[month - 1]} {year}
+              </h2>
+              <span className="text-xs md:text-sm font-medium text-najdi-palm bg-najdi-palm/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full">
+>>>>>>> b89f9f6 (initial commit)
                 {bookings.length} booking{bookings.length !== 1 ? "s" : ""}
               </span>
             </div>
 
+<<<<<<< HEAD
             <div className="grid gap-4 md:gap-5">
               {bookings.map((booking) => (
                 <div
                   key={booking.id}
                   className="bg-najdi-cream rounded-xl shadow-desert p-5 md:p-6 border border-najdi-border hover:border-najdi-clay hover:shadow-desert-md transition-all duration-300 cursor-pointer"
+=======
+            <div className="grid gap-3 md:gap-5">
+              {bookings.map((booking) => (
+                <div
+                  key={booking.id}
+                  className="bg-najdi-cream rounded-xl shadow-desert p-4 md:p-6 border border-najdi-border hover:border-najdi-clay hover:shadow-desert-md transition-all duration-300 cursor-pointer active:scale-[0.98]"
+>>>>>>> b89f9f6 (initial commit)
                   onClick={() => {
                     const date = new Date(booking.date);
                     setSelectedDate(date);
@@ -187,14 +270,22 @@ export default function Home() {
                     setIsModalOpen(true);
                   }}
                 >
+<<<<<<< HEAD
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 w-14 h-14 bg-najdi-palm rounded-xl flex flex-col items-center justify-center text-white shadow-desert">
                         <span className="text-xs font-semibold uppercase">
+=======
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 bg-najdi-palm rounded-xl flex flex-col items-center justify-center text-white shadow-desert">
+                        <span className="text-[10px] md:text-xs font-semibold uppercase leading-none">
+>>>>>>> b89f9f6 (initial commit)
                           {new Date(booking.date).toLocaleDateString("en-US", {
                             month: "short",
                           })}
                         </span>
+<<<<<<< HEAD
                         <span className="text-xl font-bold">
                           {new Date(booking.date).getDate()}
                         </span>
@@ -246,6 +337,41 @@ export default function Home() {
                         Edit
                       </button>
                     </div>
+=======
+                        <span className="text-lg md:text-xl font-bold leading-none">
+                          {new Date(booking.date).getDate()}
+                        </span>
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-base md:text-lg font-semibold text-najdi-text truncate">
+                          {booking.customerName}
+                        </h3>
+                        <p className="text-xs md:text-sm text-najdi-muted truncate">
+                          {new Date(booking.date).toLocaleDateString(
+                            "en-US",
+                            {
+                              weekday: "short",
+                              month: "long",
+                              day: "numeric",
+                            },
+                          )}
+                        </p>
+                      </div>
+                    </div>
+
+                    <button
+                      className="flex-shrink-0 px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-medium text-najdi-palm bg-najdi-palm/10 rounded-xl hover:bg-najdi-palm/20 transition-all duration-200 active:scale-95"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const date = new Date(booking.date);
+                        setSelectedDate(date);
+                        setSelectedBooking(booking);
+                        setIsModalOpen(true);
+                      }}
+                    >
+                      Edit
+                    </button>
+>>>>>>> b89f9f6 (initial commit)
                   </div>
                 </div>
               ))}
@@ -253,6 +379,7 @@ export default function Home() {
           </div>
         )}
 
+<<<<<<< HEAD
         {/* Empty State */}
         {!isLoading && bookings.length === 0 && (
           <div className="mt-10 md:mt-14 bg-najdi-cream rounded-2xl shadow-desert-lg p-12 md:p-16 text-center border border-najdi-border">
@@ -295,6 +422,8 @@ export default function Home() {
           </div>
         )}
 
+=======
+>>>>>>> b89f9f6 (initial commit)
       </div>
 
       {/* Booking Modal */}

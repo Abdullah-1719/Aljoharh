@@ -156,6 +156,7 @@ export default function BookingModal({
       />
 
       {/* Modal - Reservation Card Style */}
+<<<<<<< HEAD
       <div className="flex min-h-full items-center justify-center p-4">
         <div className="relative bg-najdi-cream rounded-2xl shadow-sunlight max-w-md w-full border border-najdi-border overflow-hidden">
           {/* Header Banner - warm desert gradient */}
@@ -166,6 +167,18 @@ export default function BookingModal({
                   {isEditing ? "Edit Reservation" : "New Reservation"}
                 </h2>
                 <p className="text-sm text-white/80 mt-1">
+=======
+      <div className="flex min-h-full items-end sm:items-center justify-center p-0 sm:p-4">
+        <div className="relative bg-najdi-cream rounded-t-2xl sm:rounded-2xl shadow-sunlight w-full sm:max-w-md border border-najdi-border overflow-hidden safe-area-inset-bottom">
+          {/* Header Banner - warm desert gradient */}
+          <div className="bg-gradient-to-r from-najdi-palm via-najdi-coffee to-najdi-palm px-5 py-4 md:px-6 md:py-5">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-white font-serif">
+                  {isEditing ? "Edit Reservation" : "New Reservation"}
+                </h2>
+                <p className="text-xs md:text-sm text-white/80 mt-0.5">
+>>>>>>> b89f9f6 (initial commit)
                   {isEditing
                     ? "Update or cancel booking"
                     : "Book your perfect day"}
@@ -173,7 +186,11 @@ export default function BookingModal({
               </div>
               <button
                 onClick={onClose}
+<<<<<<< HEAD
                 className="text-white/80 hover:text-white transition-colors duration-200 p-2 hover:bg-white/10 rounded-xl"
+=======
+                className="text-white/80 hover:text-white transition-colors duration-200 p-2 hover:bg-white/10 rounded-xl active:scale-90"
+>>>>>>> b89f9f6 (initial commit)
                 disabled={isLoading}
               >
                 <svg
@@ -192,12 +209,20 @@ export default function BookingModal({
           </div>
 
           {/* Form - paper/cream background */}
+<<<<<<< HEAD
           <form onSubmit={handleSubmit} className="p-6 space-y-5">
+=======
+          <form onSubmit={handleSubmit} className="p-5 md:p-6 space-y-4 md:space-y-5">
+>>>>>>> b89f9f6 (initial commit)
             {/* Customer Name */}
             <div>
               <label
                 htmlFor="customerName"
+<<<<<<< HEAD
                 className="block text-sm font-semibold text-najdi-text mb-2"
+=======
+                className="block text-sm font-semibold text-najdi-text mb-1.5"
+>>>>>>> b89f9f6 (initial commit)
               >
                 Customer Name *
               </label>
@@ -206,16 +231,29 @@ export default function BookingModal({
                 id="customerName"
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
+<<<<<<< HEAD
                 className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-najdi-palm bg-white text-najdi-text placeholder-najdi-muted/60 transition-all duration-200 ${
+=======
+                className={`w-full px-4 py-3.5 text-base border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-najdi-palm bg-white text-najdi-text placeholder-najdi-muted/60 transition-all duration-200 ${
+>>>>>>> b89f9f6 (initial commit)
                   errors.customerName
                     ? "border-najdi-clay bg-najdi-clay/5"
                     : "border-najdi-border hover:border-najdi-clay-light"
                 }`}
+<<<<<<< HEAD
                 placeholder="Enter your name (min 2 characters)"
                 disabled={isLoading}
               />
               {errors.customerName && (
                 <p className="mt-2 text-sm text-najdi-clay-dark font-medium">
+=======
+                placeholder="Enter your name"
+                disabled={isLoading}
+                autoComplete="name"
+              />
+              {errors.customerName && (
+                <p className="mt-1.5 text-sm text-najdi-clay-dark font-medium">
+>>>>>>> b89f9f6 (initial commit)
                   {errors.customerName}
                 </p>
               )}
@@ -225,7 +263,11 @@ export default function BookingModal({
             <div>
               <label
                 htmlFor="date"
+<<<<<<< HEAD
                 className="block text-sm font-semibold text-najdi-text mb-2"
+=======
+                className="block text-sm font-semibold text-najdi-text mb-1.5"
+>>>>>>> b89f9f6 (initial commit)
               >
                 Reservation Date *
               </label>
@@ -234,7 +276,11 @@ export default function BookingModal({
                 id="date"
                 value={selectedBookingDate}
                 onChange={(e) => setSelectedBookingDate(e.target.value)}
+<<<<<<< HEAD
                 className={`w-full px-4 py-3 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-najdi-palm bg-white text-najdi-text transition-all duration-200 ${
+=======
+                className={`w-full px-4 py-3.5 text-base border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-najdi-palm bg-white text-najdi-text transition-all duration-200 ${
+>>>>>>> b89f9f6 (initial commit)
                   errors.date
                     ? "border-najdi-clay bg-najdi-clay/5"
                     : "border-najdi-border hover:border-najdi-clay-light"
@@ -242,6 +288,7 @@ export default function BookingModal({
                 disabled={isLoading}
               />
               {errors.date && (
+<<<<<<< HEAD
                 <p className="mt-2 text-sm text-najdi-clay-dark font-medium">
                   {errors.date}
                 </p>
@@ -257,6 +304,20 @@ export default function BookingModal({
                 type="submit"
                 disabled={isLoading}
                 className="flex-1 bg-najdi-palm text-white py-3.5 px-6 rounded-xl hover:bg-najdi-palm-dark focus:outline-none focus:ring-2 focus:ring-najdi-palm focus:ring-offset-2 focus:ring-offset-najdi-cream disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-desert-md hover:shadow-desert-lg text-lg"
+=======
+                <p className="mt-1.5 text-sm text-najdi-clay-dark font-medium">
+                  {errors.date}
+                </p>
+              )}
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-3 pt-2">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="flex-1 bg-najdi-palm text-white py-4 px-6 rounded-xl hover:bg-najdi-palm-dark focus:outline-none focus:ring-2 focus:ring-najdi-palm focus:ring-offset-2 focus:ring-offset-najdi-cream disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold shadow-desert-md hover:shadow-desert-lg text-base md:text-lg active:scale-[0.98]"
+>>>>>>> b89f9f6 (initial commit)
               >
                 {isLoading ? (
                   <span className="flex items-center justify-center">
@@ -293,12 +354,17 @@ export default function BookingModal({
                   type="button"
                   onClick={handleDelete}
                   disabled={isLoading}
+<<<<<<< HEAD
                   className="px-6 py-3.5 border-2 border-najdi-clay text-najdi-clay rounded-xl hover:bg-najdi-clay hover:text-white focus:outline-none focus:ring-2 focus:ring-najdi-clay focus:ring-offset-2 focus:ring-offset-najdi-cream disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold"
+=======
+                  className="px-5 py-4 border-2 border-najdi-clay text-najdi-clay rounded-xl hover:bg-najdi-clay hover:text-white focus:outline-none focus:ring-2 focus:ring-najdi-clay focus:ring-offset-2 focus:ring-offset-najdi-cream disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-semibold active:scale-[0.98]"
+>>>>>>> b89f9f6 (initial commit)
                 >
                   Cancel
                 </button>
               )}
             </div>
+<<<<<<< HEAD
 
             {/* Help text */}
             <div className="text-center pt-2 border-t border-najdi-border">
@@ -306,6 +372,8 @@ export default function BookingModal({
                 Need help? Contact us at +966 XX XXX XXXX
               </p>
             </div>
+=======
+>>>>>>> b89f9f6 (initial commit)
           </form>
         </div>
       </div>
